@@ -1,0 +1,88 @@
+.card {
+  background: var(--surface);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--space-4) var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 200px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: var(--text-label);
+  color: var(--text-secondary);
+}
+
+.icon {
+  color: var(--brand-light);
+}
+
+.value {
+  font-size: var(--text-metric);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+}
+
+.unit {
+  font-size: var(--text-label);
+  font-weight: var(--weight-regular);
+  color: var(--text-secondary);
+  margin-inline-start: var(--space-1);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 24px;
+}
+
+.up {
+  font-size: var(--text-meta);
+  color: var(--success);
+}
+
+.down {
+  font-size: var(--text-meta);
+  color: var(--danger);
+}
+
+.footnote {
+  font-size: var(--text-meta);
+  color: var(--text-muted);
+}
+
+.action {
+  height: 28px;
+  padding-inline: var(--space-3);
+  font-size: var(--text-meta);
+}
+
+.highlight {
+  background: var(--brand);
+  border-color: var(--brand);
+}
+
+.highlight .label {
+  color: color-mix(in srgb, var(--brand-tint) 70%, transparent);
+}
+
+.highlight .value {
+  color: #ffffff;
+}
+
+.highlight .unit {
+  color: color-mix(in srgb, #ffffff 75%, transparent);
+}
+
+.highlight .footnote {
+  color: var(--accent);
+  font-weight: var(--weight-medium);
+}

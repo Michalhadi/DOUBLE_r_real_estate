@@ -51,6 +51,14 @@ const PROTOTYPES: Prototype[] = [
     href: "/real-estate/properties",
   },
   {
+    id: "dash",
+    group: "Developer / brokerage",
+    title: "Dashboard",
+    subtitle: "Leads, viewings, sources",
+    description: "The sales team's overview: new leads, booked viewings, qualification and where leads come from.",
+    href: "/real-estate/dashboard",
+  },
+  {
     id: "agent",
     group: "Developer / brokerage",
     title: "Property agent",
