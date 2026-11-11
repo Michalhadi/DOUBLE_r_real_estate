@@ -1,12 +1,35 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./project.module.css";
 import { RenderArt } from "@/components/real-estate/RenderArt";
 import { REP, VIEWING_SLOTS, formatPrice, getProperty } from "@/lib/real-estate/data";
 import { answerFor, SUGGESTED } from "@/lib/real-estate/answers";
 
-type Msg = { from: "bot" | "me"; text: string; booking?: boolean; image?: string };
+type Msg = { from: "bot" | "me"; text: string; booking?: boolean; image?: string; animate?: boolean };
+
+/** Types the text out character by character, then reveals the extras. */
+function BotContent({ m, onTick, children }: { m: Msg; onTick: () => void; children: React.ReactNode }) {
+  const [n, setN] = useState(m.animate ? 0 : m.text.length);
+  const done = n >= m.text.length;
+  useEffect(() => {
+    if (done) return;
+    const t = setTimeout(() => setN((v) => v + 1), 18);
+    return () => clearTimeout(t);
+  }, [n, done]);
+  useEffect(() => { onTick(); }, [n, done, onTick]);
+  return (
+    <>
+      {m.image && done && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={m.image} alt="" className={styles.shot} />
+      )}
+      {m.text.slice(0, n)}
+      {!done && <span className={styles.caret} />}
+      {done && children}
+    </>
+  );
+}
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 function getRecognition(): any | null {
@@ -19,7 +42,7 @@ function getRecognition(): any | null {
 export function ProjectLanding({ slug }: { slug: string }) {
   const p = getProperty(slug)!;
   const [msgs, setMsgs] = useState<Msg[]>([
-    { from: "bot", text: `Ask me anything about ${p.name}: prices, layouts, payments, the neighborhood. You can type, or just talk.` },
+    { from: "bot", animate: true, text: `Ask me anything about ${p.name}: prices, layouts, payments, the neighborhood. You can type, or just talk.` },
   ]);
   const [draft, setDraft] = useState("");
   const [typing, setTyping] = useState(false);
@@ -29,10 +52,21 @@ export function ProjectLanding({ slug }: { slug: string }) {
   const chatRef = useRef<HTMLElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   
-  useEffect(() => {
+  const scrollDown = useCallback(() => {
     const el = threadRef.current;
     if (el) el.scrollTop = el.scrollHeight;
-  }, [msgs, typing, booked]);
+  }, []);
+  useEffect(() => { scrollDown(); }, [msgs, typing, booked, scrollDown]);
+
+  const gallery = [
+    p.images
+      ? { src: p.images.gallery[0], label: "Inside", q: "Show me inside" }
+      : { art: "loft" as const, label: "Inside", q: "Show me the layouts" },
+    { art: "plan" as const, label: "Floor plans", q: "Show me the layouts" },
+    p.images
+      ? { src: p.images.hero, label: "The building", q: `Tell me about ${p.neighborhood}` }
+      : { art: "night" as const, label: "The building", q: `Tell me about ${p.neighborhood}` },
+  ];
 
   function send(text: string, spoken = false) {
     const q = text.trim();
@@ -43,7 +77,7 @@ export function ProjectLanding({ slug }: { slug: string }) {
     const a = answerFor(p, q);
     setTimeout(() => {
       setTyping(false);
-      setMsgs((m) => [...m, { from: "bot", text: a.text, booking: a.offerBooking, image: a.image }]);
+      setMsgs((m) => [...m, { from: "bot", animate: true, text: a.text, booking: a.offerBooking, image: a.image }]);
       if (spoken && typeof window !== "undefined" && "speechSynthesis" in window) {
         window.speechSynthesis.speak(new SpeechSynthesisUtterance(a.text));
       }
@@ -127,21 +161,37 @@ export function ProjectLanding({ slug }: { slug: string }) {
               {msgs.map((m, i) => (
                 <div key={i} className={[styles.row, m.from === "me" && styles.rowMe].filter(Boolean).join(" ")}>
                   <div className={[styles.bubble, m.from === "me" ? styles.me : styles.bot].join(" ")}>
-                    {m.image && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={m.image} alt={`Inside ${p.name}`} className={styles.shot} />
-                    )}
-                    {m.text}
-                    {m.booking && !booked && (
-                      <div className={styles.slots}>
-                        {VIEWING_SLOTS.map((s) => (
-                          <button key={s.iso} type="button" className={styles.slot} onClick={() => setBooked(s.label)}>{s.label}</button>
-                        ))}
-                      </div>
+                    {m.from === "bot" ? (
+                      <BotContent m={m} onTick={scrollDown}>
+                        {m.booking && !booked && (
+                          <div className={styles.slots}>
+                            {VIEWING_SLOTS.map((sl) => (
+                              <button key={sl.iso} type="button" className={styles.slot} onClick={() => setBooked(sl.label)}>{sl.label}</button>
+                            ))}
+                          </div>
+                        )}
+                      </BotContent>
+                    ) : (
+                      m.text
                     )}
                   </div>
                 </div>
               ))}
+              {msgs.length === 1 && !typing && (
+                <div className={styles.gallery} aria-label={`${p.name} gallery`}>
+                  {gallery.map((g) => (
+                    <button key={g.label} type="button" className={styles.tile} onClick={() => send(g.q)}>
+                      {"src" in g ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img src={g.src} alt="" className={styles.tileImg} />
+                      ) : (
+                        <RenderArt palette={p.palette} variant={g.art} className={styles.tileImg} />
+                      )}
+                      <span className={styles.tileLabel}>{g.label}</span>
+                    </button>
+                  ))}
+                </div>
+              )}
               {typing && <div className={styles.row}><div className={[styles.bubble, styles.bot, styles.typing].join(" ")}><i /><i /><i /></div></div>}
               {booked && (
                 <div className={styles.done}>
