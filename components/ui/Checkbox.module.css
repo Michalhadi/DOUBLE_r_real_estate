@@ -1,0 +1,56 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.box {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.check {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: var(--border-width) solid var(--border-strong);
+  background: var(--surface);
+  color: transparent;
+  pointer-events: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.input:checked + .check {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #ffffff;
+}
+
+.input:disabled + .check {
+  background: var(--page);
+  border-color: var(--border);
+  cursor: not-allowed;
+}
+
+.input:focus-visible + .check {
+  box-shadow: var(--focus-ring);
+}
+
+.label {
+  font-size: var(--text-body);
+  color: var(--text);
+}

@@ -1,0 +1,75 @@
+/*
+  Double R — Design Tokens
+  Source of truth: ערכת-עיצוב-Double-R.md
+  Rule: no color, size or radius is ever written directly outside this file.
+*/
+
+:root {
+  /* ---- brand — one purple, three intensities ---- */
+  --brand: #6c2bd9; /* primary action only */
+  --brand-light: #8b5cf6; /* logo, icons, highlights */
+  --brand-tint: #ede9fe; /* workhorse — secondary buttons, active nav, chips, badges */
+  --brand-on-tint: #6d28d9; /* text on brand-tint */
+
+  /* ---- accent — used sparingly ---- */
+  --accent: #f0c94b;
+  --accent-text: #4a3200; /* text on accent */
+
+  /* ---- surfaces ---- */
+  --surface: #ffffff; /* cards, tables, sidebar */
+  --page: #fafafb; /* page background */
+
+  /* ---- text ---- */
+  --text: #1f2033;
+  --text-secondary: #6b6c7e; /* labels, secondary text */
+  --text-muted: #9ca0b3; /* placeholder, meta */
+
+  /* ---- borders ---- */
+  --border: #eaeaf0; /* hairline — default */
+  --border-strong: #d8d9e3; /* hover, tertiary button */
+
+  /* ---- states ---- */
+  --success: #34c77b;
+  --warning: #f5b944;
+  --danger: #ef5350;
+  --link: #3b82f6; /* row link icons */
+
+  /* ---- data colors — charts only, never UI ---- */
+  --data-1: #34c7a0;
+  --data-2: #4a7ef0;
+  --data-3: #f5b944;
+  --data-4: #ef5350;
+  --data-5: #8b5cf6;
+
+  /* ---- typography ---- */
+  /* --font-rubik is injected by next/font on <html> in layout.tsx */
+  --font: var(--font-rubik), system-ui, sans-serif;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+
+  --text-metric: 26px; /* metric numbers */
+  --text-page-title: 22px; /* page title */
+  --text-section-title: 18px; /* section title */
+  --text-body: 14px; /* body */
+  --text-label: 13px; /* labels, table cells */
+  --text-meta: 12px; /* meta, helper — floor, never smaller */
+
+  /* ---- layout ---- */
+  --radius: 8px; /* buttons, inputs, chips */
+  --radius-card: 12px; /* cards */
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+
+  --sidebar-width: 240px;
+
+  --border-width: 0.5px;
+
+  --focus-ring: 0 0 0 2px var(--surface), 0 0 0 4px var(--brand-light);
+}

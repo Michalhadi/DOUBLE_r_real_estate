@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.avatar {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: var(--brand-tint);
+  overflow: hidden;
+}
+
+.photo {
+  object-fit: cover;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  font-size: var(--text-meta);
+  color: var(--text-muted);
+}
+
+.name {
+  font-size: var(--text-body);
+  font-weight: var(--weight-medium);
+  color: var(--text);
+}

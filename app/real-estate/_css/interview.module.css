@@ -1,0 +1,142 @@
+.page {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--page);
+}
+
+.phone {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 420px;
+  min-height: 100vh;
+  background: var(--surface);
+  border-inline: var(--border-width) solid var(--border);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: var(--border-width) solid var(--border);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius);
+  background: var(--brand);
+  color: #ffffff;
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  flex-shrink: 0;
+}
+
+.brandName {
+  font-size: var(--text-body);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+}
+
+.conversation {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  padding: var(--space-6);
+}
+
+.turn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+
+/* intro card */
+.introCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--surface);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-card);
+}
+
+.jobLine {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+  border-bottom: var(--border-width) solid var(--border);
+}
+
+.jobTitle {
+  font-size: var(--text-body);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+}
+
+.jobMeta {
+  font-size: var(--text-meta);
+  color: var(--text-secondary);
+}
+
+.introText {
+  text-align: start;
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.reassurance {
+  text-align: start;
+  font-size: var(--text-meta);
+  color: var(--text-muted);
+  margin-top: calc(var(--space-2) * -1);
+}
+
+.startButton {
+  width: 100%;
+  height: 48px;
+  font-size: var(--text-body);
+}
+
+.expectLink {
+  align-self: center;
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  color: var(--brand);
+}
+
+.expectLink:hover {
+  text-decoration: underline;
+}
+
+.expectText {
+  text-align: start;
+  font-size: var(--text-label);
+  line-height: 1.6;
+  color: var(--text-secondary);
+  padding-top: var(--space-2);
+  border-top: var(--border-width) solid var(--border);
+}

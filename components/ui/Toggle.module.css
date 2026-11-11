@@ -1,0 +1,59 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+}
+
+.track {
+  position: relative;
+  width: 40px;
+  height: 23px;
+  flex-shrink: 0;
+}
+
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.thumb {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--border-strong);
+  transition: background-color 0.15s ease;
+  pointer-events: none;
+}
+
+.thumb::after {
+  content: "";
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  border-radius: 999px;
+  background: #ffffff;
+  top: 3px;
+  inset-inline-start: 3px;
+  transition: inset-inline-start 0.15s ease;
+}
+
+.input:checked + .thumb {
+  background: var(--brand);
+}
+
+.input:checked + .thumb::after {
+  inset-inline-start: 20px;
+}
+
+.input:focus-visible + .thumb {
+  box-shadow: var(--focus-ring);
+}
+
+.label {
+  font-size: var(--text-body);
+  color: var(--text);
+}

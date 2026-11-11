@@ -1,0 +1,29 @@
+.row {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.rowCandidate {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 75%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-card);
+  font-size: var(--text-body);
+  line-height: 1.5;
+}
+
+.bot {
+  background: var(--surface);
+  border: var(--border-width) solid var(--border);
+  color: var(--text);
+  border-start-start-radius: 4px;
+}
+
+.candidate {
+  background: var(--brand);
+  color: #ffffff;
+  border-start-end-radius: 4px;
+}

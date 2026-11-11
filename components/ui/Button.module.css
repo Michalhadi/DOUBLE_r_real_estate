@@ -1,0 +1,83 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 36px;
+  padding-inline: var(--space-4);
+  border-radius: var(--radius);
+  border: var(--border-width) solid transparent;
+  font-size: var(--text-body);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  transition: filter 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.iconOnly {
+  padding-inline: 0;
+  width: 36px;
+  flex-shrink: 0;
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Primary — one per screen, the main action */
+.primary {
+  background: var(--brand);
+  color: #ffffff;
+}
+.primary:hover:not(:disabled) {
+  filter: brightness(0.92);
+}
+.primary:active:not(:disabled) {
+  filter: brightness(0.85);
+}
+
+/* Secondary — the workhorse, most buttons */
+.secondary {
+  background: var(--brand-tint);
+  color: var(--brand-on-tint);
+}
+.secondary:hover:not(:disabled) {
+  filter: brightness(0.97);
+}
+.secondary:active:not(:disabled) {
+  filter: brightness(0.93);
+}
+
+/* Tertiary — icon-only utility actions */
+.tertiary {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+.tertiary:hover:not(:disabled) {
+  background: var(--page);
+}
+
+/* Ghost — cancel, "more" */
+.ghost {
+  background: transparent;
+  color: var(--brand);
+}
+.ghost:hover:not(:disabled) {
+  background: var(--brand-tint);
+}
+
+/* Accent — high intent, once per page */
+.accent {
+  background: var(--accent);
+  color: var(--accent-text);
+}
+.accent:hover:not(:disabled) {
+  filter: brightness(0.94);
+}

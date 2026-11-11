@@ -1,0 +1,54 @@
+.toast {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 280px;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  border: var(--border-width) solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--text-body);
+}
+
+.icon {
+  flex-shrink: 0;
+}
+
+.message {
+  flex: 1;
+}
+
+.dismiss {
+  display: inline-flex;
+  color: var(--text-muted);
+}
+
+.dismiss:hover {
+  color: var(--text);
+}
+
+.neutral .icon {
+  color: var(--text-secondary);
+}
+
+.success {
+  border-color: color-mix(in srgb, var(--success) 35%, var(--border));
+}
+.success .icon {
+  color: var(--success);
+}
+
+.warning {
+  border-color: color-mix(in srgb, var(--warning) 40%, var(--border));
+}
+.warning .icon {
+  color: var(--warning);
+}
+
+.danger {
+  border-color: color-mix(in srgb, var(--danger) 35%, var(--border));
+}
+.danger .icon {
+  color: var(--danger);
+}

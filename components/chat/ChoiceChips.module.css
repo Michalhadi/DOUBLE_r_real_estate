@@ -1,0 +1,26 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  justify-content: flex-end;
+}
+
+.chip {
+  height: 36px;
+  padding-inline: var(--space-4);
+  border-radius: 999px;
+  border: var(--border-width) solid var(--brand);
+  background: var(--surface);
+  color: var(--brand);
+  font-size: var(--text-body);
+  font-weight: var(--weight-medium);
+}
+
+.chip:hover {
+  background: var(--brand-tint);
+}
+
+.selected {
+  background: var(--brand);
+  color: #ffffff;
+}

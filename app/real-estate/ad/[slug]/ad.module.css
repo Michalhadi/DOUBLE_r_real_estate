@@ -1,0 +1,19 @@
+.page { display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; background: var(--page); padding: var(--space-6); }
+.post { display: flex; flex-direction: column; gap: var(--space-3); width: 100%; max-width: 420px; background: var(--surface); border: var(--border-width) solid var(--border); border-radius: var(--radius-card); padding: var(--space-4); }
+.header { display: flex; align-items: center; gap: var(--space-2); }
+.mark { width: 36px; height: 36px; border-radius: var(--radius); background: var(--brand); color: #fff; display: grid; place-items: center; font-weight: var(--weight-semibold); }
+.headerText { display: flex; flex-direction: column; }
+.pageName { font-size: var(--text-label); font-weight: var(--weight-semibold); color: var(--text); }
+.sponsored { font-size: var(--text-meta); color: var(--text-muted); }
+.copy { margin: 0; font-size: var(--text-body); color: var(--text); line-height: 1.5; }
+.media { position: relative; border-radius: var(--radius); overflow: hidden; }
+.art { display: block; width: 100%; height: 260px; }
+.tag { position: absolute; top: 12px; inset-inline-start: 12px; background: #fff; color: var(--text); font-size: var(--text-meta); font-weight: var(--weight-medium); padding: 4px 10px; border-radius: 999px; }
+.overlay { position: absolute; inset-inline: 0; bottom: 0; padding: var(--space-6) var(--space-4) var(--space-3); display: flex; flex-direction: column; background: linear-gradient(transparent, rgba(0,0,0,.6)); color: #fff; }
+.title { font-size: var(--text-section-title); font-weight: var(--weight-semibold); }
+.sub { font-size: var(--text-meta); opacity: .9; }
+.cta { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); background: var(--page); border-radius: var(--radius); padding: var(--space-3) var(--space-4); }
+.ctaText { display: flex; flex-direction: column; }
+.ctaTitle { font-weight: var(--weight-semibold); color: var(--text); font-size: var(--text-label); }
+.ctaSub { font-size: var(--text-meta); color: var(--text-secondary); }
+.engagement { display: flex; gap: var(--space-4); font-size: var(--text-meta); color: var(--text-secondary); }

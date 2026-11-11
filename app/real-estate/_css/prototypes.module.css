@@ -1,0 +1,259 @@
+/* Prototypes page — its own look: dark ink, warm cream, coral accent. */
+.page {
+  --ink: #0f1218;
+  --ink-2: #171b24;
+  --line: #2a3040;
+  --cream: #f4efe6;
+  --cream-dim: #a9a79f;
+  --coral: #ff6b4a;
+  --coral-dark: #1a0a05;
+  --sand: #e9dcc3;
+
+  display: flex;
+  min-height: 100vh;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* ---- left rail ---- */
+.side {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 32px 28px;
+  border-inline-end: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--coral);
+  color: var(--coral-dark);
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.brandName {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+}
+
+.title {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--cream-dim);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin-top: 32px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.groupLabel {
+  padding-bottom: 8px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream-dim);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 12px 14px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  text-align: start;
+  color: var(--cream);
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.item:hover {
+  background: var(--ink-2);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 2px;
+}
+
+.itemActive,
+.itemActive:hover {
+  background: var(--ink-2);
+  border-color: var(--coral);
+}
+
+.itemTitle {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.itemSubtitle {
+  font-size: 13px;
+  color: var(--cream-dim);
+}
+
+/* ---- stage ---- */
+.stage {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+}
+
+.stageHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.stageTitle {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: -0.01em;
+}
+
+.stageSub {
+  font-weight: 500;
+  color: var(--cream-dim);
+}
+
+.stageDescription {
+  margin-top: 8px;
+  max-width: 540px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--cream-dim);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  font-family: var(--font-body), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.primary {
+  background: var(--coral);
+  color: var(--coral-dark);
+}
+
+.primary:hover {
+  background: #ff826a;
+}
+
+.secondary {
+  border: 1px solid var(--cream-dim);
+  color: var(--cream);
+}
+
+.secondary:hover {
+  border-color: var(--cream);
+}
+
+.primary:focus-visible,
+.secondary:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 2px;
+}
+
+.backdrop {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 24px;
+  background: radial-gradient(circle at 50% 0%, #262c3b 0%, var(--ink-2) 60%);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+}
+
+.device {
+  width: 100%;
+  max-width: 400px;
+  height: 760px;
+  max-height: calc(100vh - 240px);
+  min-height: 520px;
+  overflow: hidden;
+  background: #ffffff;
+  border: 8px solid var(--sand);
+  border-radius: 36px;
+}
+
+.iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    transition: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .page {
+    flex-direction: column;
+  }
+
+  .side {
+    width: 100%;
+    border-inline-end: none;
+    border-bottom: 1px solid var(--line);
+  }
+}
