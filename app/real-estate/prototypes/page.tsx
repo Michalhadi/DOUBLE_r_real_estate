@@ -43,6 +43,14 @@ const PROTOTYPES: Prototype[] = [
     href: "/real-estate/whatsapp?property=marina-towers",
   },
   {
+    id: "all",
+    group: "Developer / brokerage",
+    title: "All properties",
+    subtitle: "Browse and filter",
+    description: "Every project in one page, with filters and the AI rep one tap away on each card.",
+    href: "/real-estate/properties",
+  },
+  {
     id: "agent",
     group: "Developer / brokerage",
     title: "Property agent",
