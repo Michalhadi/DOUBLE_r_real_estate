@@ -39,8 +39,13 @@ Property ad · AI sales chat (web) · AI sales chat (WhatsApp) · Property agent
 ### Phase 2 — All-properties page  (`/real-estate/properties`)
 Same idea as the Hebrew all-jobs page, in English: tenant header, rep widget, filters (city, type, price, rooms, status), property cards with rendering, a "Chat with <rep>" button per property that opens the web chat.
 
-### Phase 3 — Dashboard  (`/real-estate/dashboard`)
-Leads today, viewings booked, qualification rate, by source (Meta / Google / website / CRM), by property. Lead table with budget, mortgage status, rating, viewing slot, last activity. Sheet sync status.
+### Phase 3 — Dashboard (management system)  ✅ built
+The dashboard is where a project is created and run; the prototype is what that produces.
+- `/real-estate/dashboard`: overview (leads, viewings, qualification, sources, leads table)
+- `/real-estate/projects`: project list (All / Active / Draft / Paused), "New project"
+- `/real-estate/projects/new`: 7-step wizard with a live preview of the buyer page: Details (with "Fill from brochure") · Media · Qualification · Rep · Channels · Test · Publish
+- `/real-estate/projects/[slug]`: workspace tabs: Overview · Rep (persona, rendered prompt, test console, live preview) · Calendar · Leads · Viewings · Analytics · Channels (link, source builder, QR, intake) · Settings
+- `/real-estate/base-prompt`: the single base prompt with placeholders, live preview against any project, reset to default. Marked draft until the agency's own prompt is pasted in.
 
 ### Phase 4 — Onboarding  (`/real-estate/onboarding`)
 Connect WhatsApp, connect Google Sheet, create rep persona (name, photo, tone, brand), add first property with media, submit the opening template, copy lead-form webhook URL.

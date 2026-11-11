@@ -19,7 +19,7 @@ const STEPS: ChecklistStep[] = [
   { label: "Verify your email", description: "Confirm your email so we can send you important updates.", done: true },
   { label: "Create your sales rep", description: "Name, photo, tone and brand colors, shown on every project page.", done: true, href: "/real-estate/agent" },
   { label: "Connect a WhatsApp Business number", description: "Link your Meta account to message leads who opted in.", done: true },
-  { label: "Add your first project", description: "Fields, price list, renderings and floor plans.", done: true, href: "/real-estate/properties" },
+  { label: "Add your first project", description: "Fields, price list, renderings and floor plans.", done: true, href: "/real-estate/projects/new" },
   { label: "Connect your Google Sheet", description: "New rows become leads. Results are written back to the same sheet.", done: false, href: "#" },
   { label: "Copy your lead-form webhook", description: "Paste it into Meta, Google or your website form.", done: false, href: "#" },
 ];
@@ -54,7 +54,8 @@ export default function RealEstateDashboard() {
               <h1 className={styles.pageTitle}>Dashboard</h1>
               <p className={styles.pageSubtitle}>Skyline Developments · leads, viewings and sources at a glance.</p>
             </div>
-            <div role="group" aria-label="Range" style={{ display: "flex", gap: 6 }}>
+            <div role="group" aria-label="Range" style={{ display: "flex", gap: 6, alignItems: "center" }}>
+              <Link href="/real-estate/projects/new"><Button variant="primary">New project</Button></Link>
               {([["today", "Today"], ["7d", "7 days"], ["30d", "30 days"]] as const).map(([id, label]) => (
                 <Button key={id} variant={range === id ? "primary" : "secondary"} onClick={() => setRange(id)}>{label}</Button>
               ))}
@@ -98,7 +99,7 @@ export default function RealEstateDashboard() {
                     {PROJECT_FUNNEL.map((p) => (
                       <tr key={p.slug}>
                         <td>
-                          <Link href={`/real-estate/project/${p.slug}`} className={styles.person}>
+                          <Link href={`/real-estate/projects/${p.slug}`} className={styles.person}>
                             <span className={styles.personName}>{p.name}</span>
                             <span className={styles.personSub}>{p.city}</span>
                           </Link>

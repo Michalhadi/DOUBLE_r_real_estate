@@ -11,7 +11,7 @@ export const RE_NAV: SidebarGroup[] = [
     items: [
       { id: "leads", label: "Leads", icon: <UsersIcon size={18} />, href: "#leads" },
       { id: "viewings", label: "Viewings", icon: <CalendarIcon size={18} />, href: "#" },
-      { id: "projects", label: "Projects", icon: <BriefcaseIcon size={18} />, href: "/real-estate/properties" },
+      { id: "projects", label: "Projects", icon: <BriefcaseIcon size={18} />, href: "/real-estate/projects" },
     ],
   },
   { label: "LIVE CHAT", items: [{ id: "inbox", label: "Inbox", icon: <InboxIcon size={18} />, href: "#" }] },
@@ -19,7 +19,7 @@ export const RE_NAV: SidebarGroup[] = [
     label: "AI REP",
     items: [
       { id: "rep", label: "Rep persona", icon: <SparkleIcon size={18} />, href: "/real-estate/agent" },
-      { id: "prompt", label: "Base prompt", icon: <BookIcon size={18} />, href: "#" },
+      { id: "prompt", label: "Base prompt", icon: <BookIcon size={18} />, href: "/real-estate/base-prompt" },
       { id: "media", label: "Media library", icon: <ImageIcon size={18} />, href: "#" },
     ],
   },
