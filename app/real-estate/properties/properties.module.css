@@ -47,3 +47,18 @@
 .link { background: none; border: 0; padding: 0; font: inherit; color: #1f6f8b; text-decoration: underline; cursor: pointer; }
 .foot { max-width: 1180px; margin: 0 auto; padding: 16px 24px 40px; font-size: 12px; color: #6b7785; }
 @media (max-width: 520px) { .grid { grid-template-columns: 1fr; } .danaInner { border-radius: 22px; } .heroInner { padding-top: 36px; } }
+
+/* ---- brand themes ---- */
+.page[data-font="serif"] .title, .page[data-font="serif"] .name { font-family: Georgia, "Times New Roman", serif; font-weight: 400; }
+.page[data-tone="light"] .hero { background: #eef0ef; color: #101828; border-bottom: 1px solid #d9dfdc; }
+.page[data-tone="light"] .topLink, .page[data-tone="light"] .sub, .page[data-tone="light"] .eyebrow { color: #101828; }
+.page[data-tone="light"] .topLink { text-decoration-color: #101828; }
+.danaBtn { background: var(--accent, #1f6f8b); }
+.link { color: var(--accent, #1f6f8b); }
+.page[data-cards="list"] .grid { grid-template-columns: 1fr; }
+.page[data-cards="list"] .card { flex-direction: row; }
+.page[data-cards="list"] .media { width: 38%; aspect-ratio: auto; min-height: 220px; flex-shrink: 0; }
+.page[data-style="compact"] .media { aspect-ratio: 16 / 9; }
+.page[data-style="compact"] .tag { display: none; }
+.page[data-style="compact"] .body { padding: 14px 18px 16px; }
+@media (max-width: 640px) { .page[data-cards="list"] .card { flex-direction: column; } .page[data-cards="list"] .media { width: 100%; } }

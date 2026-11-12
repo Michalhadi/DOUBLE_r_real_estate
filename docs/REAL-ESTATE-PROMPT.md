@@ -47,6 +47,14 @@ The dashboard is where a project is created and run; the prototype is what that 
 - `/real-estate/projects/[slug]`: workspace tabs: Overview · Rep (persona, rendered prompt, test console, live preview) · Calendar · Leads · Viewings · Analytics · Channels (link, source builder, QR, intake) · Settings
 - `/real-estate/base-prompt`: the single base prompt with placeholders, live preview against any project, reset to default. Marked draft until the agency's own prompt is pasted in.
 
+### Phase 3b — Rep & page design  ✅ built
+`/real-estate/rep`: one place to design how a company looks to buyers, because every developer and brokerage must look different.
+- Rep: photo upload, name, tone, language
+- Project page: structure (Cinematic · Split · Editorial), brand color, dark or light top, headline font, button text, company name
+- Properties page (all-properties page): headline and sub-headline, grid or list, card style, filters on or off, rep strip on or off, public link and embed code
+- Live preview of the real page (mobile or desktop); changes save automatically
+Also built: working pages for Leads, Viewings, Inbox, Media library, Sources and Settings (Google Sheet, WhatsApp, Team).
+
 ### Phase 4 — Onboarding  (`/real-estate/onboarding`)
 Connect WhatsApp, connect Google Sheet, create rep persona (name, photo, tone, brand), add first property with media, submit the opening template, copy lead-form webhook URL.
 

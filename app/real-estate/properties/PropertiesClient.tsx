@@ -6,11 +6,16 @@ import styles from "./properties.module.css";
 import { RenderArt } from "@/components/real-estate/RenderArt";
 import { variantFor } from "@/components/real-estate/parts";
 import { PROPERTIES, REP, formatPrice } from "@/lib/real-estate/data";
+import { fill, useTheme } from "@/lib/real-estate/theme";
 
 const CITIES = ["All", ...Array.from(new Set(PROPERTIES.map((p) => p.city)))];
 const TYPES = ["All", ...Array.from(new Set(PROPERTIES.map((p) => p.type)))];
 
 export function PropertiesClient() {
+  const theme = useTheme();
+  const L = theme.list;
+  const repName = theme.repName;
+  const repPhoto = theme.repPhoto ?? REP.photo;
   const [city, setCity] = useState("All");
   const [type, setType] = useState("All");
 
@@ -20,48 +25,50 @@ export function PropertiesClient() {
   );
 
   return (
-    <main className={styles.page}>
+    <main className={styles.page} data-tone={theme.page.tone} data-font={theme.page.font} data-cards={L.layout} data-style={L.cardStyle} style={{ ["--accent" as string]: theme.page.accent }}>
       <header className={styles.hero}>
         <div className={styles.top}>
-          <span className={styles.brand}>{REP.company.toUpperCase()}</span>
-          <Link href="/real-estate/agent" className={styles.topLink}>Talk to {REP.name}</Link>
+          <span className={styles.brand}>{theme.page.company.toUpperCase()}</span>
+          <Link href="/real-estate/agent" className={styles.topLink}>Talk to {repName}</Link>
         </div>
         <div className={styles.heroInner}>
           <span className={styles.eyebrow}>{PROPERTIES.length} projects · {PROPERTIES.reduce((n, p) => n + p.units.length, 0)} apartment types</span>
-          <h1 className={styles.title}>Find your next home.</h1>
-          <p className={styles.sub}>New-build projects across Israel. Browse below, or tell {REP.name} what you need and she&apos;ll point you to the right one.</p>
+          <h1 className={styles.title}>{L.headline}</h1>
+          <p className={styles.sub}>{fill(L.sub, repName)}</p>
         </div>
       </header>
 
+      {L.showRep && (
       <section className={styles.dana}>
         <div className={styles.danaInner}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {REP.photo && <img src={REP.photo} alt={REP.name} className={styles.danaPhoto} />}
+          {repPhoto && <img src={repPhoto} alt={repName} className={styles.danaPhoto} />}
           <div className={styles.danaText}>
-            <strong>Not sure which project fits? Ask {REP.name}.</strong>
+            <strong>Not sure which project fits? Ask {repName}.</strong>
             <span>Our AI sales assistant knows every project. Type or talk, she answers right away.</span>
           </div>
           <Link href="/real-estate/agent" className={styles.danaBtn}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="9" y="3" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></svg>
-            Ask {REP.name}
+            Ask {repName}
           </Link>
         </div>
       </section>
+      )}
 
       <section className={styles.listing}>
         <div className={styles.filters} aria-label="Filters">
-          <div className={styles.group}>
+          {L.filterCity && <div className={styles.group}>
             <span className={styles.label}>City</span>
             {CITIES.map((c) => (
               <button key={c} type="button" className={[styles.pill, c === city && styles.pillOn].filter(Boolean).join(" ")} onClick={() => setCity(c)}>{c}</button>
             ))}
-          </div>
-          <div className={styles.group}>
+          </div>}
+          {L.filterType && <div className={styles.group}>
             <span className={styles.label}>Type</span>
             {TYPES.map((t) => (
               <button key={t} type="button" className={[styles.pill, t === type && styles.pillOn].filter(Boolean).join(" ")} onClick={() => setType(t)}>{t}</button>
             ))}
-          </div>
+          </div>}
         </div>
 
         {list.length === 0 ? (
@@ -91,8 +98,8 @@ export function PropertiesClient() {
                   <div className={styles.actions}>
                     <Link href={`/real-estate/project/${p.slug}`} className={styles.primary}>
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      {REP.photo && <img src={REP.photo} alt="" className={styles.mini} />}
-                      Chat with {REP.name}
+                      {repPhoto && <img src={repPhoto} alt="" className={styles.mini} />}
+                      Chat with {repName}
                     </Link>
                     <Link href={`/real-estate/project/${p.slug}`} className={styles.ghost}>View project</Link>
                   </div>
@@ -103,7 +110,7 @@ export function PropertiesClient() {
         )}
       </section>
 
-      <footer className={styles.foot}>Renderings and plans are for illustration only. {REP.name} is an AI assistant; a member of our sales team will meet you at the viewing.</footer>
+      <footer className={styles.foot}>Renderings and plans are for illustration only. {repName} is an AI assistant; a member of our sales team will meet you at the viewing.</footer>
     </main>
   );
 }

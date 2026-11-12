@@ -5,6 +5,7 @@ import styles from "./project.module.css";
 import { RenderArt } from "@/components/real-estate/RenderArt";
 import { REP, VIEWING_SLOTS, formatPrice, getProperty } from "@/lib/real-estate/data";
 import { answerFor, SUGGESTED } from "@/lib/real-estate/answers";
+import { fill, useTheme } from "@/lib/real-estate/theme";
 
 type Msg = { from: "bot" | "me"; text: string; booking?: boolean; image?: string; animate?: boolean };
 
@@ -41,6 +42,10 @@ function getRecognition(): any | null {
 
 export function ProjectLanding({ slug }: { slug: string }) {
   const p = getProperty(slug)!;
+  const theme = useTheme();
+  const T = theme.page;
+  const repName = theme.repName;
+  const repPhoto = theme.repPhoto ?? REP.photo;
   const [msgs, setMsgs] = useState<Msg[]>([
     { from: "bot", animate: true, text: `Ask me anything about ${p.name}: prices, layouts, payments, the neighborhood. You can type, or just talk.` },
   ]);
@@ -106,8 +111,8 @@ export function ProjectLanding({ slug }: { slug: string }) {
   };
 
   return (
-    <main className={styles.page} style={{ ["--accent" as string]: p.palette.accent }}>
-      <section className={styles.hero}>
+    <main className={styles.page} data-layout={T.layout} data-tone={T.tone} data-font={T.font} style={{ ["--accent" as string]: T.accent }}>
+      <section className={styles.hero} data-layout={T.layout} data-tone={T.tone}>
         {p.images ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img src={p.images.hero} alt="" className={styles.heroArt} />
@@ -116,8 +121,8 @@ export function ProjectLanding({ slug }: { slug: string }) {
         )}
         <div className={styles.heroShade} />
         <header className={styles.top}>
-          <span className={styles.brand}>{REP.company.toUpperCase()}</span>
-          <button type="button" className={styles.topLink} onClick={goChat}>Talk to {REP.name}</button>
+          <span className={styles.brand}>{T.company.toUpperCase()}</span>
+          <button type="button" className={styles.topLink} onClick={goChat}>Talk to {repName}</button>
         </header>
         <div className={styles.heroText}>
           <span className={styles.status}>{p.type} · {p.city}</span>
@@ -133,7 +138,7 @@ export function ProjectLanding({ slug }: { slug: string }) {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="9" y="3" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></svg>
             </span>
             <span className={styles.ctaText}>
-              <strong>Ask {REP.name} anything</strong>
+              <strong>{fill(T.cta, repName)}</strong>
               <small>Our AI sales assistant · type or talk</small>
             </span>
             <span aria-hidden>↓</span>
@@ -141,20 +146,20 @@ export function ProjectLanding({ slug }: { slug: string }) {
         </div>
       </section>
 
-      <section className={styles.meet} ref={chatRef} aria-label={`Talk to ${REP.name}`}>
+      <section className={styles.meet} ref={chatRef} aria-label={`Talk to ${repName}`}>
         <div className={styles.meetGrid}>
           <div className={styles.portrait}>
-            {REP.photo ? (
+            {repPhoto ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={REP.photo} alt={REP.name} className={styles.portraitImg} />
+              <img src={repPhoto} alt={repName} className={styles.portraitImg} />
             ) : (
-              <span className={styles.portraitFallback}>{REP.initials}</span>
+              <span className={styles.portraitFallback}>{repName[0]}</span>
             )}
             <span className={styles.live}><i /> AI sales assistant · online</span>
           </div>
 
           <div className={styles.talkCol}>
-            <h2 className={styles.hi}>Hi, I&apos;m {REP.name}.</h2>
+            <h2 className={styles.hi}>Hi, I&apos;m {repName}.</h2>
             <p className={styles.role}>Your AI sales assistant at {p.name}.</p>
 
             <div className={styles.thread} ref={threadRef}>
@@ -197,7 +202,7 @@ export function ProjectLanding({ slug }: { slug: string }) {
                 <div className={styles.done}>
                   <strong>Viewing booked</strong>
                   <span>{booked} · {p.name} sales office, {p.neighborhood}</span>
-                  <span>{REP.name} will send the confirmation on WhatsApp.</span>
+                  <span>{repName} will send the confirmation on WhatsApp.</span>
                 </div>
               )}
             </div>
@@ -209,7 +214,7 @@ export function ProjectLanding({ slug }: { slug: string }) {
             </div>
 
             <form className={styles.composer} onSubmit={(e) => { e.preventDefault(); send(draft); }}>
-              <button type="button" className={[styles.talk, listening && styles.talkOn].filter(Boolean).join(" ")} onClick={talk} aria-pressed={listening} aria-label={`Talk to ${REP.name}`}>
+              <button type="button" className={[styles.talk, listening && styles.talkOn].filter(Boolean).join(" ")} onClick={talk} aria-pressed={listening} aria-label={`Talk to ${repName}`}>
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="9" y="3" width="6" height="12" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></svg>
               </button>
               <input
@@ -218,18 +223,18 @@ export function ProjectLanding({ slug }: { slug: string }) {
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
                 placeholder={listening ? "Listening…" : "Type a question…"}
-                aria-label={`Message ${REP.name}`}
+                aria-label={`Message ${repName}`}
               />
               <button type="submit" className={styles.send} disabled={!draft.trim()}>Send</button>
             </form>
             <p className={styles.talkHint}>
-              {listening ? `${REP.name} is listening…` : `Tap the mic and talk to ${REP.name} out loud. She answers in voice.`}
+              {listening ? `${repName} is listening…` : `Tap the mic and talk to ${repName} out loud. She answers in voice.`}
             </p>
           </div>
         </div>
       </section>
 
-      <footer className={styles.foot}>Renderings and plans are for illustration only. {REP.name} is an AI assistant; a member of our sales team will meet you at the viewing.</footer>
+      <footer className={styles.foot}>Renderings and plans are for illustration only. {repName} is an AI assistant; a member of our sales team will meet you at the viewing.</footer>
     </main>
   );
 }

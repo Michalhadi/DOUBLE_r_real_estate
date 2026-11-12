@@ -135,7 +135,7 @@ export default function NewProjectPage() {
               <div><p className={styles.hint}>Tone</p><SegmentedControl options={["Warm", "Professional", "Direct", "Luxury"]} value={tone} onChange={setTone} /></div>
               <div><p className={styles.hint}>Language</p><SegmentedControl options={["Hebrew", "English", "Auto-detect"]} value={lang} onChange={setLang} /></div>
               <Textarea label="Extra instructions (optional)" placeholder="Anything specific about this project." />
-              <p className={styles.hint}>Base prompt: <Link href="/real-estate/base-prompt" style={{ color: "var(--link)" }}>review or replace it</Link></p>
+              <p className={styles.hint}>Photo, brand colors and page layout are set once for the whole company in <Link href="/real-estate/rep" style={{ color: "var(--link)" }}>Rep &amp; page design</Link>. Base prompt: <Link href="/real-estate/base-prompt" style={{ color: "var(--link)" }}>review or replace it</Link>.</p>
             </>
           )}
 

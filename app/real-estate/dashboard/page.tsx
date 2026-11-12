@@ -17,11 +17,11 @@ import { LEADS, PROJECT_FUNNEL, SOURCES, STATUS_TONE, TREND_POINTS, type LeadSta
 
 const STEPS: ChecklistStep[] = [
   { label: "Verify your email", description: "Confirm your email so we can send you important updates.", done: true },
-  { label: "Create your sales rep", description: "Name, photo, tone and brand colors, shown on every project page.", done: true, href: "/real-estate/agent" },
+  { label: "Create your sales rep", description: "Name, photo, tone and brand colors, shown on every project page.", done: true, href: "/real-estate/rep" },
   { label: "Connect a WhatsApp Business number", description: "Link your Meta account to message leads who opted in.", done: true },
   { label: "Add your first project", description: "Fields, price list, renderings and floor plans.", done: true, href: "/real-estate/projects/new" },
-  { label: "Connect your Google Sheet", description: "New rows become leads. Results are written back to the same sheet.", done: false, href: "#" },
-  { label: "Copy your lead-form webhook", description: "Paste it into Meta, Google or your website form.", done: false, href: "#" },
+  { label: "Connect your Google Sheet", description: "New rows become leads. Results are written back to the same sheet.", done: false, href: "/real-estate/settings?tab=sheet" },
+  { label: "Copy your lead-form webhook", description: "Paste it into Meta, Google or your website form.", done: false, href: "/real-estate/sources" },
 ];
 
 const TABS: { id: "all" | LeadStatus; label: string }[] = [
@@ -74,7 +74,7 @@ export default function RealEstateDashboard() {
               <span className={styles.sheetSub}>AI sales assistant · answering on WhatsApp and on project pages · 24 conversations right now</span>
             </div>
             <span className={styles.live}><i /> Online</span>
-            <Link href="/real-estate/agent"><Button variant="secondary">Open rep</Button></Link>
+            <Link href="/real-estate/rep"><Button variant="secondary">Design rep &amp; pages</Button></Link>
           </div>
 
           <div className={styles.kpis}>
